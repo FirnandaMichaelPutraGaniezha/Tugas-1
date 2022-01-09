@@ -88,94 +88,82 @@ app.post("/prisma_segitiga", (req,res)=>{
     res.json(response)
 })
 
-//soal nomer 2
-app.get("/convert/:celcius/:suhu", (req,res) => {
-    
-    let celcius = req.params.celcius
-    let suhu = req.params.suhu
-
-    let reamur = suhu * 0.8
-    let fahrenheit = suhu * 1.8 + 32
-    let kelvin = suhu + 273
-
+//soal no 2
+app.get("/convert/celcius/:value", (req, res) => {
+    let celcius = req.params.celcius;
+    let value = req.params.value;
+  
+    let reamur = (4 / 5) * value;
+    let fahrenheit = (9 / 5) * value + 32;
+    let kelvin = (1 / 1) * value + 273;
+  
     let response = {
-        celcius : suhu,
-        Result : {
-            reamur : reamur,
-            fahrenheit : fahrenheit,
-            kelvin : kelvin
-        }
-    }
-
-    res.json(response)
-
-})
-
-app.get("/convert/:reamur/:suhu", (req,res) => {
-    
-    let reamur = req.params.reamur
-    let suhu = req.params.suhu
-
-    let celcius = 5/4 * suhu 
-    let fahrenheit = 9/4 * suhu  + 32 
-    let kelvin = 5/4 * suhu + 273
-
+      celcius: value,
+      result: {
+        reamur: reamur,
+        fahrenheit: fahrenheit,
+        kelvin: kelvin,
+      },
+    };
+    res.json(response);
+  });
+  
+  app.get("/convert/reamur/:value", (req, res) => {
+    let reamur = req.params.reamur;
+    let value = req.params.value;
+  
+    let celcius = (5 / 4) * value;
+    let fahrenheit = (9 / 4) * value + 32;
+    let kelvin = (5 / 4) * value + 273;
+  
     let response = {
-        reamur : suhu,
-        Result : {
-            celcius : celcius,
-            fahrenheit : fahrenheit,
-            kelvin : kelvin
-        }
-    }
-
-    res.json(response)
-
-})
-
-app.get("/convert/:kelvin/:suhu", (req,res) => {
-    
-    let kelvin = req.params.kelvin
-    let suhu = req.params.suhu
-
-    let celcius = suhu - 273
-    let fahrenheit = 9/5 * (suhu - 273) + 32
-    let reamur = 4/5 * (suhu - 273)
-
+      reamur: value,
+      result: {
+        celcius: celcius,
+        fahrenheit: fahrenheit,
+        kelvin: kelvin,
+      },
+    };
+    res.json(response);
+  });
+  
+  app.get("/convert/kelvin/:value", (req, res) => {
+    let kelvin = req.params.kelvin;
+    let value = req.params.value;
+  
+    let celcius = value - 273;
+    let fahrenheit = (9 / 5) * (value - 273.15) + 32;
+    let reamur = (4 / 5) * (value - 273.15);
+  
     let response = {
-        kelvin : suhu,
-        Result : {
-            celcius : celcius,
-            fahrenheit : fahrenheit,
-            reamur : reamur
-        }
-    }
-
-    res.json(response)
-
-})
-
-app.get("/convert/:fahrenheit/:suhu", (req,res) => {
-    
-    let fahrenheit = req.params.fahrenheit
-    let suhu = req.params.suhu
-
-    let celcius = 5/9 * (suhu - 32)
-    let kelvin = 4/9 * (suhu - 32)
-    let reamur = 5/9 * (suhu - 32) + 273
-
+      kelvin: value,
+      result: {
+        celcius: celcius,
+        fahrenheit: fahrenheit,
+        reamur: reamur,
+      },
+    };
+    res.json(response);
+  });
+  
+  app.get("/convert/fahrenheit/:value", (req, res) => {
+    let fahrenheit = req.params.fahrenheit;
+    let value = req.params.value;
+  
+    let celcius = (5 / 9) * (value - 32);
+    let reamur = (4 / 9) * (value - 32);
+    let kelvin = (5 / 9) * (value - 32) + 273;
+  
     let response = {
-        fahrenheit : suhu,
-        Result : {
-            celcius : celcius,
-            kelvin : kelvin,
-            reamur : reamur
-        }
-    }
-
-    res.json(response)
-
-})
+      fahrenheit: value,
+      result: {
+        celcius: celcius,
+        reamur: reamur,
+        kelvin: kelvin,
+      },
+    };
+    res.json(response);
+  });
 
 //soal nomer 3
 app.post("/decimal", (req,res) => {
@@ -192,8 +180,8 @@ app.post("/decimal", (req,res) => {
             biner : biner,
             octal : octal,
             hex : hex
-        }
-    }
+        },
+    };
     res.json(response)
 })
 
@@ -211,8 +199,8 @@ app.post("/biner", (req,res) =>{
             Decimal : decimal,
             Octal : octal,
             Hex : hex
-        }
-    }
+        },
+    };
     res.json(response)
 })
 
@@ -230,8 +218,8 @@ app.post("/octal", (req,res) =>{
             Decimal : decimal,
             Binary : binary,
             Hex : hex
-        }
-    }
+        },
+    };
     res.json(response)
 })
 
@@ -249,8 +237,8 @@ app.post("/hex", (req,res) => {
             Decimal : decimal,
             Octal : octal,
             Binary : binary
-        }
-    }
+        },
+    };
     res.json(response)
 })
 
